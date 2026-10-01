@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model SiteSetting {
+  id             String   @id @default("global_setting")
+  siteName       String   @default("IT Solution & Innovation")
+  tagline        String?  @default("Building Future Digital Architecture")
+  logoUrl        String?
+  faviconUrl     String?
+  heroTitle      String   @default("Solusi Teknologi Terdepan untuk Bisnis Anda")
+  heroSubtitle   String   @default("Kami memberikan layanan IT profesional, pengembangan perangkat lunak, dan infrastruktur cloud kelas dunia.")
+  heroMediaUrl   String?
+  heroMediaType  String   @default("VIDEO")
+  footerText     String?  @default("© 2026 IT Company Profile. All rights reserved.")
+  contactEmail   String   @default("info@company.com")
+  contactPhone   String   @default("+62 812 3456 7890")
+  contactAddress String   @default("Jakarta, Indonesia")
+  updatedAt      DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+model MenuItem {
+  id        String   @id @default(cuid())
+  title     String
+  url       String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@map("menu_items")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  icon        String?
+  shortDesc   String
+  fullDesc    String   @db.Text
+  imageUrl    String?
+  isFeatured  Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Portfolio {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  client      String
+  category    String
+  description String   @db.Text
+  coverUrl    String
+  videoUrl    String?
+  projectUrl  String?
+  isFeatured  Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("portfolios")
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  clientName  String
+  position    String
+  company     String?
+  avatarUrl   String?
+  rating      Int      @default(5)
+  content     String   @db.Text
+  isFeatured  Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@map("testimonials")
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages")
+}
