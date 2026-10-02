@@ -5,8 +5,9 @@ export const dynamic = 'force-dynamic';
 import { useEffect, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+// Berikan placeholder valid agar tidak error saat prerender di Vercel
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tnragjugvypouklsejzp.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRucmFnanVndnlwb3VrbHNlanpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA4NTMzMDAsImV4cCI6MjEwNjQyOTMwMH0.777F8SbTSD-jolOABLDi2x15VOmcLCAuMmq1dCtRrbk'
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Kata sandi default admin (dapat disesuaikan)
