@@ -9,10 +9,19 @@ provider:
 - `ADMIN_PASSWORD`: a strong, unique admin password with at least 16 characters.
 - `ADMIN_SESSION_SECRET`: a random secret with at least 32 characters, used to
   sign the HTTP-only admin session cookie.
+- `DATABASE_URL`: the Supabase transaction-mode pooler URL for application
+  queries.
+- `DIRECT_URL`: the Supabase session-mode pooler URL for Prisma schema changes.
 
 Restart the application after changing environment variables. The dashboard
 manages site settings, navigation, services, portfolio projects, testimonials,
 and contact form messages.
+
+Get the PostgreSQL URLs from the Supabase project's **Connect** dialog. Replace
+`[YOUR-PASSWORD]` locally with the database password, then add the URLs to the
+root `.env.local` file. Do not commit or share `.env.local`. Before running
+`npx prisma db push` against a database that already has data, verify its
+contents and make a backup.
 
 ## Getting Started
 
