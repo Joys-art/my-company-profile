@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Admin dashboard
+
+The admin dashboard is available at `/admin`. Before using it, configure these
+server-side environment variables in the local environment and in the hosting
+provider:
+
+- `ADMIN_PASSWORD`: a strong, unique admin password with at least 16 characters.
+- `ADMIN_SESSION_SECRET`: a random secret with at least 32 characters, used to
+  sign the HTTP-only admin session cookie.
+
+Restart the application after changing environment variables. The dashboard
+manages site settings, navigation, services, portfolio projects, testimonials,
+and contact form messages.
+
 ## Getting Started
 
 First, run the development server:

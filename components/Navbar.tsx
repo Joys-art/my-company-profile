@@ -10,8 +10,13 @@ export default async function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-white">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white shadow-lg shadow-blue-500/30">
-            <Terminal className="h-5 w-5" />
+          <div
+            aria-label={siteSettings?.logoUrl ? `${siteSettings.siteName} logo` : undefined}
+            role={siteSettings?.logoUrl ? 'img' : undefined}
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 bg-contain bg-center bg-no-repeat text-white shadow-lg shadow-blue-500/30"
+            style={siteSettings?.logoUrl ? { backgroundImage: `url("${siteSettings.logoUrl}")` } : undefined}
+          >
+            {!siteSettings?.logoUrl && <Terminal className="h-5 w-5" />}
           </div>
           <span>{siteSettings?.siteName || 'Company Profile'}</span>
         </Link>
