@@ -1,0 +1,17 @@
+ADMIN DASHBOARD ACCESS
+
+Dashboard URL: /admin
+
+Local credentials are stored in .env.local at the project root:
+- ADMIN_PASSWORD
+- ADMIN_SESSION_SECRET
+- DATABASE_URL
+- DIRECT_URL
+
+Keep .env.local private. It is ignored by Git and must never be committed,
+pushed to GitHub, or shared in chat.
+
+For the deployed website, add both variables separately in the hosting
+provider's environment-variable settings, then redeploy. DATABASE_URL and
+DIRECT_URL are also required by the deployed dashboard to access Supabase.
+Do not copy this note or the local credential values into a public repository.

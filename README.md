@@ -17,6 +17,10 @@ Restart the application after changing environment variables. The dashboard
 manages site settings, navigation, services, portfolio projects, testimonials,
 and contact form messages.
 
+For local setup, copy `.env.example` to `.env.local` and fill in all four
+values. For production, set them in the hosting provider's environment-variable
+settings; do not upload `.env.local`.
+
 Get the PostgreSQL URLs from the Supabase project's **Connect** dialog. Replace
 `[YOUR-PASSWORD]` locally with the database password, then add the URLs to the
 root `.env.local` file. Do not commit or share `.env.local`. Before running
