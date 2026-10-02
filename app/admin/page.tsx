@@ -1,13 +1,22 @@
 'use client'
 
-export const dynamic = 'force-dynamic';
-
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 
-// Berikan placeholder valid agar tidak error saat prerender di Vercel
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://tnragjugvypouklsejzp.supabase.co'
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRucmFnanVndnlwb3VrbHNlanpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA4NTMzMDAsImV4cCI6MjEwNjQyOTMwMH0.777F8SbTSD-jolOABLDi2x15VOmcLCAuMmq1dCtRrbk'
+// 1. Tambahkan baris ini tepat di bawah import
+export const dynamic = 'force-dynamic'
+
+// 2. Pembersihan URL agar aman saat build
+const rawUrl = (process.env.NEXT_PUBLIC_SUPABASE_URL || '').trim()
+const supabaseUrl = rawUrl.startsWith('http') 
+  ? rawUrl 
+  : 'https://tnragjugvypouklsejzp.supabase.co'
+
+const rawKey = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '').trim()
+const supabaseAnonKey = rawKey.length > 20 
+  ? rawKey 
+  : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRucmFnanVndnlwb3VrbHNlanpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA4NTMzMDAsImV4cCI6MjEwNjQyOTMwMH0.777F8SbTSD-jolOABLDi2x15VOmcLCAuMmq1dCtRrbk'
+
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Kata sandi default admin (dapat disesuaikan)
