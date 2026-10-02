@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getServices, getSiteSettings } from '@/lib/data'
 import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
